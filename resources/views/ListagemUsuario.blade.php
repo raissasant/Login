@@ -25,7 +25,8 @@
             <td>{{ $user->id }}</td>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
-            <td>{{ \Carbon\Carbon::createFromFormat('d/m/Y', $user->data_nascimento)->format('d/m/Y') }}</td>
+            <td>{{ $user->data_nascimento }}</td>
+
 
             <td>
                 <a href="{{ route('editar.usuario', ['id' => $user->id]) }}" class="btn btn-primary"><i class="fas fa-edit"></i> Editar</a>

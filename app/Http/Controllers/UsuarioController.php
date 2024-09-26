@@ -72,16 +72,30 @@ class UsuarioController extends Controller
         $user = $admin->users()->where('id', $id)->firstOrFail();
 
         $request->validate([
-            'name' => 'required|string|max:60',
-            'email' => 'required|email',
-            'password' => 'required|string|max:8',
-            'data_nascimento' => 'required|string',
+            'name' => 'nullable|string',
+            'email' => 'nullable|email',
+            'password' => 'nullable|string',
+            'data_nascimento' => 'nullable|date',
         ]);
 
+        //$user->name = $request->input('name');
+        //$user->email = $request->input('email');
+        //$user->data_nascimento = $request->input('data_nascimento');
+        //$user->password= bcrypt($request->input('password'));
+
+      if ($request->filled('name')) {
         $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->data_nascimento = $request->input('data_nascimento');
-        $user->password= bcrypt($request->input('password'));
+        }
+      if ($request->filled('email')) {
+            $user->email = $request->input('email');
+        }
+      if ($request->filled('data_nascimento')) {
+            $user->data_nascimento = $request->input('data_nascimento');
+        }
+      if ($request->filled('password')) {
+            $user->password = bcrypt($request->input('password'));
+        }
+
         $user->save();
 
         return 'Usuário atualizado com sucesso';

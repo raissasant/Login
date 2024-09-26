@@ -23,14 +23,29 @@
             <input type="email" class="form-control" name="email" id="email" value="{{ $user->email }}">
         </div>
         <div class="form-group">
-            <label for="telefone">Data de nascimento</label>
-            <input type="text" class="form-control" name="data_nascimento" id="data_nascimento" value="{{ \Carbon\Carbon::createFromFormat('d/m/Y', $user->data_nascimento)->format('d/m/Y') }}">
+            <label for="date">Data de nascimento</label>
+            <input type="date" class="form-control" name="data_nascimento" id="data_nascimento" 
+            value="{{ $user->data_nascimento }}">
+
+        </div>
+        <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="text" class="form-control" name="password" id="password" value="{{ $user->password}}">
              
         </div>
 
         <button type="submit" class="btn btn-primary">Atualizar dados do usuário </button>
     </form>
 </div>
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 @endsection
 

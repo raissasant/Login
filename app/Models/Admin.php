@@ -21,5 +21,12 @@ class Admin extends Authenticatable
         
         return $this->hasMany(User::class, 'admin_id');
     }
+
+    public function fornecedor(){
+
+         return $this->hasMany(Fornecedor::class);
+}
+
+   
    
 }

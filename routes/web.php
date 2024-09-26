@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ResertSenhaController;
+use App\Http\Controllers\FornecedorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +24,8 @@ use App\Http\Controllers\ResertSenhaController;
 //http://127.0.0.1:8000/cadastro/user
 //http://127.0.0.1:8000/login/usuario #-- Usuário fazer o login --#
 //http://127.0.0.1:8000 
-//http://127.0.0.1:8000 
-//http://127.0.0.1:8000 
+//http://127.0.0.1:8000/editar/fornecedor/{id}
+//http://127.0.0.1:8000/cadastro/fornecedor
 //http://127.0.0.1:8000 
 //http://127.0.0.1:8000 
 //http://127.0.0.1:8000 
@@ -79,3 +80,12 @@ Route::get('/home/usuario',[UsuarioController::class, 'homeUsuario'])->name('hom
 
 
 # ----- Fornecedores ------- #
+Route::get('cadastro/fornecedor', [FornecedorController::class, 'indexFornecedor'])->name('indexFornecedor');
+Route::post('cadastrando/fornecedor',[FornecedorController::class, 'storeFornecedor'])->name('storeFornecedor');
+Route::get('/listagem/fornecedor',[FornecedorController::class, 'listagemFornecedor'])-> name('listagemFornecedor');
+Route::get('editar/fornecedor/{id}',[FornecedorController::class, 'EditFornecedor'])->name('EditFornecedor');
+Route::post('editando/fornecedor/{id}',[FornecedorController::class, 'AtualizandoFornecedor'])->name('AtualizandoFornecedor');
+// --- Pesquisar fornecedores
+Route::get('fornecedores/search', [FornecedorController::class, 'searchFornecedores'])->name('searchFornecedores');
+
+Route::get('/deletar/fornecedor/{id}',[FornecedorController::class, 'DeleteFornecedor'])->name('DeleteFornecedor');

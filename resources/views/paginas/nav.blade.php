@@ -20,11 +20,11 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Fornecedores
+            Gerenciar Fornecedores
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Adicionar um novo fornecedor</a></li>
-            <li><a class="dropdown-item" href="#">Fornecedores cadastrados</a></li>
+            <li><a class="dropdown-item" href="{{ route('indexFornecedor') }}">Adicionar um novo fornecedor</a></li>
+            <li><a class="dropdown-item" href="{{ route('listagemFornecedor')}}">Fornecedores cadastrados</a></li>
           </ul>
         </li>        
       </ul>       
