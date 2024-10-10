@@ -44,7 +44,9 @@ class UsuarioController extends Controller
         $user->data_nascimento= $request->input('data_nascimento');
         $user->save();
 
-        return "Salvo com sucesso";
+        //return "Salvo com sucesso";
+        return redirect()->route('listagem/user');
+
         
    }
 

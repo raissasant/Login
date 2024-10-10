@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ResertSenhaController;
 use App\Http\Controllers\FornecedorController;
-
+use App\Http\Controllers\ProdutoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,9 +26,9 @@ use App\Http\Controllers\FornecedorController;
 //http://127.0.0.1:8000 
 //http://127.0.0.1:8000/editar/fornecedor/{id}
 //http://127.0.0.1:8000/cadastro/fornecedor
-//http://127.0.0.1:8000 
-//http://127.0.0.1:8000 
-//http://127.0.0.1:8000 
+//http://127.0.0.1:8000/listagem/produto
+//http://127.0.0.1:8000/cadastro/produto 
+//http://127.0.0.1:8000
 
 
 Route::get('/', function () {
@@ -89,3 +89,13 @@ Route::post('editando/fornecedor/{id}',[FornecedorController::class, 'Atualizand
 Route::get('fornecedores/search', [FornecedorController::class, 'searchFornecedores'])->name('searchFornecedores');
 
 Route::get('/deletar/fornecedor/{id}',[FornecedorController::class, 'DeleteFornecedor'])->name('DeleteFornecedor');
+
+///-- Produtos --\\
+
+Route::get('/cadastro/produto',[ProdutoController::class, 'TelaProduto'])->name('cadastroProduto');
+Route::post('/cadastrando/produto',[ProdutoController::class, 'storeProduto'])->name('storeProduto');
+Route::get('/listagem/produto',[ProdutoController::class, 'ListagemProduto'])->name('ListagemProduto');
+Route::get('/atualizar/produto/{id}',[ProdutoController::class, 'editProduto'])->name('editProduto');
+Route::post('editando/produto/{id}',[ProdutoController::class, 'AtualizandoProduto'])->name('atualizandoProduto');
+Route::delete('/produtos/{id}', [ProdutoController::class, 'deleteProduto'])->name('deleteProduto');
+//Route::get('/produto/search', [ProdutoController::class, 'SearchProduto'])->name('SearchProduto');

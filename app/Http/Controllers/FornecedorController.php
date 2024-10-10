@@ -61,7 +61,10 @@ class FornecedorController extends Controller
         $fornecedor->status = $request->input('status');
         $fornecedor->save();
 
-        return 'Fornecedor salvo com sucesso';
+        //return 'Fornecedor salvo com sucesso';
+        return redirect()->route('listagemFornecedor');
+
+
 
     }
 
