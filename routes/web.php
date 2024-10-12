@@ -98,4 +98,4 @@ Route::get('/listagem/produto',[ProdutoController::class, 'ListagemProduto'])->n
 Route::get('/atualizar/produto/{id}',[ProdutoController::class, 'editProduto'])->name('editProduto');
 Route::post('editando/produto/{id}',[ProdutoController::class, 'AtualizandoProduto'])->name('atualizandoProduto');
 Route::delete('/produtos/{id}', [ProdutoController::class, 'deleteProduto'])->name('deleteProduto');
-//Route::get('/produto/search', [ProdutoController::class, 'SearchProduto'])->name('SearchProduto');
+Route::get('/produto/search', [ProdutoController::class, 'SearchProduto'])->name('SearchProduto');

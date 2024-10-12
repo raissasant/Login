@@ -11,6 +11,7 @@ use App\Models\Fornecedor;
 use App\Rules\Cpf;
 use App\Rules\CnpjValid;
 use Illuminate\Validation\ValidationException;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
 class ProdutoController extends Controller
@@ -41,7 +42,7 @@ class ProdutoController extends Controller
     ]);
       
 
-            //$user = User::where('admin_id', Auth::guard('admins')->id())->findOrFail($userId);
+           
          $user = Auth::user();
 
 
@@ -168,9 +169,39 @@ class ProdutoController extends Controller
     }  
 
 
-     //public function SearchProduto(Request $request){}
+    public function SearchProduto(Request $request)
+{
+    
+    $user_id = auth()->user()->id;
 
-    //public function QrCodeProduto(){}
+    
+    $search = $request->input('search');
+
+    
+    $query = Produto::where('user_id', $user_id);
+
+    
+    if ($search) {
+        $query->where(function($q) use ($search) {
+            $q->where('name', 'LIKE', '%' . $search . '%')
+              ->orWhere('sku', 'LIKE', '%' . $search . '%');
+        });
+    }
+
+    
+    $produtos = $query->get();
+
+    
+    if ($produtos->isEmpty()) {
+        return view('ProdutoListagem', [
+            'produtos' => $produtos,
+            'message' => 'Nenhum produto encontrado para a busca "' . $search . '"'
+        ]);
+    }
+
+   
+    return view('ProdutoListagem', ['produtos' => $produtos]);
+}
 
             
 
