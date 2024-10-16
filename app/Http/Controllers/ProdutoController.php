@@ -88,7 +88,7 @@ class ProdutoController extends Controller
             
         
 
-        public function AtualizandoProduto(Request $request, $id){
+        public function atualizarProduto(Request $request, $id){
              $user = Auth::user();
              $produto = $user->produtos()->findOrFail($id);
 

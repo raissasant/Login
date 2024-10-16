@@ -12,32 +12,35 @@
         <br>
 
         <table class="table mt-3">
-    <tr>
-        <th>ID</th>
-        <th>Nome completo</th>
-        <th>E-mail</th>
-        <th>Data de nascimento</th>
-        <th>Editar ou excluir</th>
-    </tr>
+            <tr>
+                <th>ID</th>
+                <th>Nome completo</th>
+                <th>CPF</th>
+                <th>E-mail</th>
+                <th>Data de nascimento</th>
+                <th>Tipo de Usuário</th>
+                <th>Editar ou excluir</th>
+            </tr>
 
-    @foreach($users as $user)
-        <tr>
-            <td>{{ $user->id }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
-            <td>{{ $user->data_nascimento }}</td>
+            @foreach($users as $user)
+                <tr>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->cpf }}</td> <!-- Mostrando o CPF do usuário -->
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->data_nascimento }}</td>
+                    <td>{{ $user->is_admin ? 'Administrador' : 'Usuário Comum' }}</td> <!-- Tipo de Usuário -->
+                    
+                    <td>
+                        <a href="{{ route('editar.usuario', ['id' => $user->id]) }}" class="btn btn-primary"><i class="fas fa-edit"></i> Editar</a>
+                        <a href="{{ route('deletar.usuario', ['id' => $user->id]) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Excluir</a>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
 
-
-            <td>
-                <a href="{{ route('editar.usuario', ['id' => $user->id]) }}" class="btn btn-primary"><i class="fas fa-edit"></i> Editar</a>
-                <a href="{{ route('deletar.usuario', ['id' => $user->id]) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Excluir</a>
-            </td>
-        </tr>
-    @endforeach
-</table>
-
-               <a href= "{{route('cadastro/user')}}" class="btn btn-success"><i class="fas fa-plus"></i> Cadastrar novo usuário</a>
-          </body>
-</html>
+        <a href="{{ route('cadastro/user') }}" class="btn btn-success"><i class="fas fa-plus"></i> Cadastrar novo usuário</a>
+    </div>
+</body>
 
 @endsection

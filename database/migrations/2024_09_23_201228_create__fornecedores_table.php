@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('admin_id');
             $table->string('name');
-            $table->string('cnpj', 14)->unique();
+            $table->string('cnpj', 14)->unique()->nullable();
             $table->string('cpf', 14)->unique()->nullable();
             $table->string('telefone');
             $table->string('cep');
@@ -26,9 +26,12 @@ return new class extends Migration
             $table->string('bairro');
             $table->string('cidade');
             $table->string('uf');
-            $table->string('email');
-            $table->string('status');
+            $table->string('email')->nullable();
+            $table->enum('status', ['ativo', 'inativo'])->default('ativo');
             $table->timestamps();
+
+            // Definindo a chave estrangeira
+            $table->foreign('admin_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

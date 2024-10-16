@@ -1,18 +1,20 @@
 <?php
 
+// app/Http/Middleware/CheckAdmin.php
+
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckIfAdmin
 {
-    public function handle(Request $request, Closure $next)
+    public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->isAdmin()) {
-            return $next($request); // Permite o acesso se o usuário for admin
+        if (Auth::check() && Auth::user()->is_admin) {
+            return $next($request); // Permitir acesso se for admin
         }
 
-        return redirect('/login'); // Redireciona para a página inicial se o usuário não for admin
+        return redirect('/home'); // Se não for admin, redireciona para o painel de usuário comum
     }
 }

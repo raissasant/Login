@@ -50,8 +50,17 @@
                     {{ ucfirst($fornecedor->status) }}
                 </td>
                 <td>
-                    <a href="{{ route('EditFornecedor', ['id' => $fornecedor->id]) }}" class="btn btn-primary"><i class="fas fa-edit"></i> Editar</a>
-                    <a href="{{ route('DeleteFornecedor', ['id' => $fornecedor->id]) }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Excluir</a>
+                    <a href="{{ route('EditFornecedor', ['id' => $fornecedor->id]) }}" class="btn btn-primary">
+                        <i class="fas fa-edit"></i> Editar
+                    </a>
+
+                    <form action="{{ route('deleteFornecedor', ['id' => $fornecedor->id]) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir?')">
+                            <i class="fas fa-trash-alt"></i> Excluir
+                        </button>
+                    </form>
                 </td>
             </tr>
         @endforeach
